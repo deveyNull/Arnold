@@ -130,10 +130,16 @@ class DQN(object):
         return dict(dqn_loss=[], gf_loss=[])
 
     def log_loss(self, loss_history):
-        logger.info('DQN loss: %.5f' % np.mean(loss_history['dqn_loss']))
+        loss_historydqn = torch.stack(loss_history['dqn_loss'], dim=0)
+        dqn_mean = torch.mean(loss_historydqn)
+
+        logger.info('DQN loss: %.5f' % float(dqn_mean))
+
+        loss_historygf = torch.stack(loss_history['gf_loss'], dim=0)
+        gf_mean = torch.mean(loss_historygf)
+        
         if self.n_features > 0:
-            logger.info('Game features loss: %.5f' %
-                        np.mean(loss_history['gf_loss']))
+            logger.info('Game features loss: %.5f' % float(gf_mean))
 
     def prepare_f_eval_args(self, last_states):
         """
