@@ -142,7 +142,7 @@ class DQN(object):
         if self.n_features > 0:
             logger.info('Game features loss: %.5f' % float(gf_mean))
 
-            def prepare_f_eval_args(self, last_states):
+    def prepare_f_eval_args(self, last_states):
         """
         Prepare inputs for evaluation.
         """

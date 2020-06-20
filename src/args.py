@@ -92,7 +92,7 @@ def parse_game_args(args):
                         help="Dump every X iterations (0 to disable)")
     parser.add_argument("--gpu_id", type=int, default=0,
                         help="GPU ID")
-    parser.add_argument("--log_frequency", type=int, default=100,
+    parser.add_argument("--log_frequency", type=int, default=10000,
                         help="Log frequency (in seconds)")
 
     # Parse known arguments

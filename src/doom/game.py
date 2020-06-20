@@ -305,20 +305,20 @@ class Game(object):
         if d > 0:
             self.reward_builder.kill(d)
             stats['kills'] += d
-            for _ in range(int(d)):
-                self.log('Kill')
+            #for _ in range(int(d)):
+            #    self.log('Kill')
 
         # death
         if self.game.is_player_dead():
             self.reward_builder.death()
             stats['deaths'] += 1
-            self.log('Dead')
+            #self.log('Dead')
 
         # suicide
         if self.properties['frag_count'] < self.prev_properties['frag_count']:
             self.reward_builder.suicide()
             stats['suicides'] += 1
-            self.log('Suicide')
+            #self.log('Suicide')
 
         # found / lost health
         d = self.properties['health'] - self.prev_properties['health']
@@ -328,11 +328,11 @@ class Game(object):
                 stats['medikits'] += 1
             else:
                 self.reward_builder.injured(d)
-            self.log('%s health (%i -> %i)' % (
-                'Found' if d > 0 else 'Lost',
-                self.prev_properties['health'],
-                self.properties['health'],
-            ))
+            #self.log('%s health (%i -> %i)' % (
+            #    'Found' if d > 0 else 'Lost',
+            #    self.prev_properties['health'],
+            #    self.properties['health'],
+            #))
 
         # found / lost armor
         d = self.properties['armor'] - self.prev_properties['armor']
@@ -340,11 +340,11 @@ class Game(object):
             if d > 0:
                 self.reward_builder.armor()
                 stats['armors'] += 1
-            self.log('%s armor (%i -> %i)' % (
-                'Found' if d > 0 else 'Lost',
-                self.prev_properties['armor'],
-                self.properties['armor'],
-            ))
+            #self.log('%s armor (%i -> %i)' % (
+            #    'Found' if d > 0 else 'Lost',
+            #    self.prev_properties['armor'],
+            #    self.properties['armor'],
+            #))
 
         # change weapon
         if self.properties['sel_weapon'] != self.prev_properties['sel_weapon']:
@@ -363,7 +363,7 @@ class Game(object):
             #        self.properties[weapon] == 1), (weapon, self.prev_properties[weapon], self.properties[weapon])
             self.reward_builder.weapon()
             stats[weapon] += 1
-            self.log('Found weapon: %s' % WEAPON_NAMES[i + 1])
+            #self.log('Found weapon: %s' % WEAPON_NAMES[i + 1])
 
         # found / lost ammo
         for ammo in ['bullets', 'shells', 'rockets', 'cells']:
@@ -374,12 +374,12 @@ class Game(object):
                     stats[ammo] += 1
                 else:
                     self.reward_builder.use_ammo()
-                self.log('%s ammo: %s (%i -> %i)' % (
-                    'Found' if d > 0 else 'Lost',
-                    ammo,
-                    self.prev_properties[ammo],
-                    self.properties[ammo]
-                ))
+                #self.log('%s ammo: %s (%i -> %i)' % (
+                #    'Found' if d > 0 else 'Lost',
+                #    ammo,
+                #    self.prev_properties[ammo],
+                #    self.properties[ammo]
+                #))
 
     def log(self, message):
         """

@@ -77,6 +77,8 @@ class Trainer(object):
             if random_action:
                 action = np.random.randint(self.params.n_actions)
 
+            
+
             # perform the action, and skip some frames
             self.game.make_action(action, self.params.frame_skip)
 
